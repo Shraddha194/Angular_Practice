@@ -1,0 +1,13 @@
+.container{
+  margin-top: 10%;
+}
+.boardTile{
+  padding-left: 40%;
+  padding-right: 40%;
+  padding-top: 20%;
+  padding-bottom: 20%;
+  border-radius: 10%;
+  background-color: aqua;
+  color: white;
+  font-size: 30px;
+}

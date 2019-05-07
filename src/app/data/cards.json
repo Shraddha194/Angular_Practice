@@ -1,0 +1,22 @@
+{
+    "cards":[
+        {
+            "boardId":"1",
+            "cardId":"1",
+            "cardTitle":"Abc",
+            "cardList":[
+                "qwerty",
+                "xyz"
+            ]
+        },
+        {
+            "boardId":"2",
+            "cardId":"2",
+            "cardTitle":"Xyz",
+            "cardList":[
+                "kknc",
+                "kvn"
+            ]   
+        }
+    ]
+}
