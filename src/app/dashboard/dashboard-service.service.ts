@@ -1,15 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Boards } from '../boards';
+import { endpoint } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardServiceService {
-url:'http://localhost:3100/boards/';
+  url = endpoint.url + "boards/";
+commonHeader = new HttpHeaders().set('Content-Type','application/json');
   constructor(private _http:HttpClient) { }
 
   getAllBoards(){
     return this._http.get(this.url);
     }
 
+    addBoard(item: Boards){
+      let body = JSON.stringify(item);
+      return this._http.post(this.url, body, {headers:this.commonHeader});
+    }
+
+    editBoard(item: Boards){
+      let body = JSON.stringify(item);
+      return this._http.put(this.url + item.boardId, body, {headers:this.commonHeader});
+    }
+
+    deleteBoard(item:Boards){
+      return this._http.delete(this.url + item.boardId, {headers:this.commonHeader});
+    }
 }

@@ -1,0 +1,15 @@
+.menu{
+    background-color:slateblue;
+}
+.menuBoard{
+    background-color: rgb(84, 69, 180);
+    color: white;
+    width: 25%;
+}
+.example-icon {
+    padding: 0 14px;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }

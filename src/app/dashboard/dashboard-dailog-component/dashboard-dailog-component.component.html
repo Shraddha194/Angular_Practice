@@ -1,0 +1,9 @@
+<div class="container">
+  <form [formGroup]="boardForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>  
+      <input matInput formControlName="boardname" placeholder="New Board">
+      <mat-hint>Board Title</mat-hint>
+      <button type="submit">submit</button>
+    </mat-form-field>
+  </form>
+   </div>
