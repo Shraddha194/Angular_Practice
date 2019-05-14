@@ -3,7 +3,8 @@ import { DashboardServiceService } from './dashboard-service.service';
 import { Router } from '@angular/router';
 import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Boards } from '../boards';
-import { MatDialogRef, MatDialog } from '@angular/material';
+import { MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material';
+
 import { DashboardDailogComponentComponent } from './dashboard-dailog-component/dashboard-dailog-component.component';
 
 @Component({

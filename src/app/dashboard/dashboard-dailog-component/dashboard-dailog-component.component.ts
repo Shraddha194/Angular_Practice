@@ -15,7 +15,7 @@ export class DashboardDailogComponentComponent implements OnInit {
   boardObject:Boards;
   boardForm:FormGroup;
   constructor(private data:DashboardServiceService,
-            ) { }
+          private _router:Router  ) { }
 
   ngOnInit() {
     this.boardForm = new FormGroup({
@@ -27,6 +27,7 @@ export class DashboardDailogComponentComponent implements OnInit {
     console.log(board);
     this.data.addBoard(board).subscribe(
       (data:Boards)=>{
+        this._router.navigate(['/card']);
       }
     )
   }
