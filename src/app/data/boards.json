@@ -23,32 +23,7 @@
     {
       "id": 5,
       "boardId": 5,
-      "boardName": "abc"
-    },
-    {
-      "id": 6,
-      "boardId": 6,
-      "boardName": "xyz"
-    },
-    {
-      "id": 7,
-      "boardId": 7,
-      "boardName": "krushra"
-    },
-    {
-      "id": 8,
-      "boardId": 8,
-      "boardName": "abcd"
-    },
-    {
-      "id": 9,
-      "boardId": 9,
-      "boardName": "new1"
-    },
-    {
-      "id": 10,
-      "boardId": 10,
-      "boardName": "sid"
+      "boardName": "hello"
     }
-  ]
+      ]
 }

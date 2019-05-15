@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cards',
@@ -7,10 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardsComponent implements OnInit {
   boardId:number;
-  constructor() { }
+  constructor(private _router:Router) { }
 
 
   ngOnInit() {
+    this._router.navigate(['/']);
     this.boardId = parseInt(localStorage.getItem("key1"));
     console.log(this.boardId);
   }

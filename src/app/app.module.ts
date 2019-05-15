@@ -5,32 +5,32 @@ import { AppComponent } from './app.component';
 import { BoardComponent } from './board/board.component';
 import { CardsComponent } from './cards/cards.component';
 import { MaterialModule } from './material-module';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent, DashboardDailogComponent, } from './dashboard/dashboard.component';
 import { MenuComponent } from './menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
-import { routingArr } from './app.routing';
+import { AppRoutingModule } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DashboardDailogComponentComponent } from './dashboard/dashboard-dailog-component/dashboard-dailog-component.component';
 import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent,
+    DashboardDailogComponent,
     BoardComponent,
     CardsComponent,
-    DashboardComponent,
     MenuComponent,
-    DashboardDailogComponentComponent
   ],
   imports: [
     BrowserModule,
     MaterialModule,
     HttpClientModule,
-    routingArr,
+    AppRoutingModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
+  entryComponents: [DashboardComponent, DashboardDailogComponent ],
   providers: [],
-  bootstrap: [AppComponent],
-  entryComponents: [DashboardDailogComponentComponent]
+  bootstrap: [AppComponent]
+  
 })
 export class AppModule { }

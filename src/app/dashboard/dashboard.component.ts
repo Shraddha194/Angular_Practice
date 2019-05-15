@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Boards } from '../boards';
 import { MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material';
+import { FormGroup, FormControl } from '@angular/forms';
 
-import { DashboardDailogComponentComponent } from './dashboard-dailog-component/dashboard-dailog-component.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,9 +15,8 @@ import { DashboardDailogComponentComponent } from './dashboard-dailog-component/
 export class DashboardComponent implements OnInit {
 boardsarr:Boards[] = [];
 maxID :number;
-dialogref :MatDialogRef<DashboardDailogComponentComponent>
   constructor(private _boarddata:DashboardServiceService,
-    private _router:Router,private dialog : MatDialog) { }
+   private dialog : MatDialog) { }
 
   ngOnInit() {
     this._boarddata.getAllBoards().subscribe(
@@ -30,15 +29,45 @@ dialogref :MatDialogRef<DashboardDailogComponentComponent>
   }
   
   onAddBoardDialog(): void{
-    this.maxID= this.maxID+1;
     localStorage.setItem("key1", this.maxID.toString());
-    console.log(localStorage.getItem("key1")); 
-    this.dialogref = this.dialog.open(DashboardDailogComponentComponent);
+     const dailogRef = this.dialog.open(DashboardDailogComponent);
   }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.boardsarr, event.previousIndex, event.currentIndex);
   }
-  
-  
+}
+
+
+@Component({
+  selector: 'dashboard-dailog-component',
+  templateUrl: 'dashboard-dailog.component.html'
+})
+export class DashboardDailogComponent{
+  boardsarr:Boards[] = [];
+  newId = parseInt(localStorage.getItem("key1"));
+  boardObject:Boards;
+  boardForm:FormGroup;
+  constructor(private data:DashboardServiceService,
+          private dialogref:MatDialogRef<DashboardDailogComponent>,
+          private __router:Router) { }
+
+  ngOnInit() {
+    this.boardForm = new FormGroup({
+      boardname : new FormControl('')
+    });
+  }
+  onSubmit(){
+    this.newId = this.newId+1;
+    console.log(this.newId);
+    let board = new Boards(this.newId, this.newId, this.boardForm.value.boardname);
+    this.data.addBoard(board).subscribe(
+      (data:Boards)=>{
+        //this._router.navigate(['/']);
+        //this._router.onSameUrlNavigation = "reload";
+        this.dialogref.close();
+        this.__router.navigate(['/card']);
+      }
+    )
+  }
 }

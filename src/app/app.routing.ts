@@ -1,8 +1,15 @@
 import { Routes, RouterModule } from '@angular/router';
 import { CardsComponent } from './cards/cards.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-const arr:Routes=[
+import { NgModule } from '@angular/core';
+
+
+export const routes:Routes=[
     {path:'',component:DashboardComponent},
     {path:'card',component:CardsComponent}
 ];
-export const routingArr=RouterModule.forRoot(arr);
+@NgModule({
+    imports:[RouterModule.forRoot(routes,{onSameUrlNavigation:'reload'})],
+    exports: [RouterModule],
+})
+export class AppRoutingModule{};
