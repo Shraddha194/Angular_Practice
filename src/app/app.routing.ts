@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 
 export const routes:Routes=[
     {path:'',component:DashboardComponent},
-    {path:'card',component:CardsComponent}
+    {path:'card/:id',component:CardsComponent}
 ];
 @NgModule({
     imports:[RouterModule.forRoot(routes,{onSameUrlNavigation:'reload'})],

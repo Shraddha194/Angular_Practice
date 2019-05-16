@@ -16,7 +16,8 @@ export class DashboardComponent implements OnInit {
 boardsarr:Boards[] = [];
 maxID :number;
   constructor(private _boarddata:DashboardServiceService,
-   private dialog : MatDialog) { }
+   private dialog : MatDialog,
+   private _router:Router) { }
 
   ngOnInit() {
     this._boarddata.getAllBoards().subscribe(
@@ -27,7 +28,9 @@ maxID :number;
       }
     )
   }
-  
+  onEditBoard(item:Boards){
+    this._router.navigate(['/card',item.id]);
+  }
   onAddBoardDialog(): void{
     localStorage.setItem("key1", this.maxID.toString());
      const dailogRef = this.dialog.open(DashboardDailogComponent);
@@ -37,7 +40,6 @@ maxID :number;
     moveItemInArray(this.boardsarr, event.previousIndex, event.currentIndex);
   }
 }
-
 
 @Component({
   selector: 'dashboard-dailog-component',
@@ -63,10 +65,8 @@ export class DashboardDailogComponent{
     let board = new Boards(this.newId, this.newId, this.boardForm.value.boardname);
     this.data.addBoard(board).subscribe(
       (data:Boards)=>{
-        //this._router.navigate(['/']);
-        //this._router.onSameUrlNavigation = "reload";
         this.dialogref.close();
-        this.__router.navigate(['/card']);
+        this.__router.navigate(['/card',this.newId]);
       }
     )
   }

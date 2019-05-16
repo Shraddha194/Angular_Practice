@@ -1,7 +1,11 @@
 <div class="container">
-  <mat-form-field class="addInputFormField">  
-    <input matInput placeholder="New Board">
-    <mat-hint>Board Title</mat-hint>
+  <div class="row">
+    <form [formGroup]="boardform" >
+    
+  <mat-form-field class="addInputFormField">
+    <input matInput placeholder="New Board" formControlName="boardName" >
   </mat-form-field>
   <hr>
- </div>
+</form>
+</div>
+</div>
