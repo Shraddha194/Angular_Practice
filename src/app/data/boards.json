@@ -6,24 +6,14 @@
       "boardName": "Project 1"
     },
     {
-      "id": "2",
-      "boardId": "2",
+      "id": 2,
+      "boardId": 2,
       "boardName": "Project 2"
     },
     {
-      "id": "3",
-      "boardId": "3",
+      "id": 3,
+      "boardId": 3,
       "boardName": "Project 3"
-    },
-    {
-      "id": "4",
-      "boardId": "4",
-      "boardName": "sid 4"
-    },
-    {
-      "id": 5,
-      "boardId": 5,
-      "boardName": "kuks"
     }
   ]
 }

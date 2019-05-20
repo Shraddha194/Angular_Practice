@@ -1,5 +1,5 @@
 .container{
-   background-color:  rgb(84, 69, 180);
+   background-color: white;
     height: 100%;
     width: 100%;
 }
@@ -8,4 +8,16 @@
     margin-left: 2%;
     background-color:  rgb(84, 69, 180);
     color: white;
+}
+.boardTitle{
+    float: left;
+    margin-left: 2%;
+    color: slateblue;
+}
+.boardDeleteButton{
+    float: right;
+    margin-right: 1%;
+    margin-top: 1%;
+    color: white;
+    background-color:rgb(84, 69, 180);
 }

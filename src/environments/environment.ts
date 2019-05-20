@@ -7,7 +7,8 @@ export const environment = {
 };
 
 export const endpoint = {
-  url: 'http://localhost:3000/'
+  url1: 'http://localhost:3000/',
+  url2: 'http://localhost:3100/'
 };
 
 /*

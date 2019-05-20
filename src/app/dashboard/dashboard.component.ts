@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DashboardServiceService } from './dashboard-service.service';
+import { DashboardServiceService } from '../dashboard-service.service';
 import { Router } from '@angular/router';
 import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Boards } from '../boards';
