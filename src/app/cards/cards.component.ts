@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DashboardServiceService } from '../dashboard-service.service';
 import { Boards } from '../boards';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Cards } from '../cards';
+import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
+import { FormGroup, FormControl, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-cards',
@@ -11,65 +13,102 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class CardsComponent implements OnInit {
   // boardId:number;
-  arrdata:Boards[]=[];
-  id: number=0;
-  boardform:FormGroup;
-  originalData:Boards;
-  currentData:Boards;
- boarddata: Boards = { id: 0, boardId: 0, boardName: '' };
+  arrdata: Boards[] = [];
+  id: number = 0;
+  cardListarr: string[] = [];
+  cardsarr: Cards[] = [];
+  boardform: FormGroup;
+  maxId : number;
+  cardDetails  :Cards;
+  newcard : Cards;
   constructor(private _router: Router,
     private _data: DashboardServiceService,
     private _activateRoute: ActivatedRoute,
-    ) { }
+  ) { }
 
 
   ngOnInit() {
     // this.boardId = parseInt(localStorage.getItem("key1")); 
-    // this._router.navigate(['/']);
-    // this.id = this._activateRoute.snapshot.params['id'];
-    // this._data.getBoardById(this.id).subscribe(
-    //   (data: Boards) => {
-    //     console.log(data);
-    //     this.boarddata = data[0];
-    //     console.log(this.boarddata);
-    //   }
-    // );
-
-    this.boardform=new FormGroup({
-      // id:new FormControl(0),
-      // boardId:new FormControl(0),
-      boardName:new FormControl(null)
+    this.boardform = new FormGroup({
+      boardName: new FormControl(null),
+      cardTitle: new FormControl(null),
+      cardList:new FormArray([])
     });
-    this.id=this._activateRoute.snapshot.params['id'];
+    this.id = this._activateRoute.snapshot.params['id'];
     this._data.getBoardById(this.id).subscribe(
-      (data:Boards)=>{
-        this.boarddata = data;
-        console.log(this.boarddata)
-        this.getAllDetails(data)
+      (data: Boards) => {
+        this.getAllBoardDetails(data)
+      }
+    );  
+    this._data.getAllCards().subscribe(
+      (data: Cards[]) => {
+        this.cardsarr = data;
+        console.log(this.cardsarr);
+        for(let i=0;i<this.cardsarr.length;i++){
+          console.log(this.cardsarr[i].cardTitle);
+        this.boardform.value.cardTitle = this.cardsarr[i].cardTitle;
+        }
+         this.getAllCardDetails(this.cardsarr)
+      }
+    );
+    //for(var i=0;i<this.card.cardList.length;i++)
+    //{
+      //this.cardsarr[0]=this.card.cardList[0];
+     // console.log(this.card.id);
+    //}
+    
+  }
+  
+  
+  //----------Functions Block---------------
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.cardsarr, event.previousIndex, event.currentIndex);
+  }
+  getAllBoardDetails(data: Boards) {
+    this.boardform.patchValue({
+      boardName: data.boardName
+    });
+  }
+
+  getAllCardDetails(cardsarr) {
+    
+    for(var i=0; i<cardsarr.length; i++){
+    this.cardListarr = cardsarr[i].cardList;}
+    console.log(this.cardListarr);
+    this.boardform.patchValue({
+      //cardTitle: this.cardsarr[i].cardTitle,
+     // cardList: this.cardListarr
+    });
+  }
+  delete(id: Boards) {
+    this._data.deleteBoard(id).subscribe(
+      (data: any) => {
+        if (data.affectedRows > 0) {
+          this.arrdata.splice(this.arrdata.indexOf(id), 1);
+        }
+        this._router.navigateByUrl('');
       }
     );
   }
-  getAllDetails(data:Boards){
-    this.originalData=data;
-    this.currentData=data;
-    this.boardform.patchValue({
-      // id:data.id,
-      // boardId:data.boardId,
-      boardName:data.boardName
-    });
+  addCard(){
+    this.maxId = this.cardsarr.length+1;
+    console.log(this.maxId);
+   // this.newcard.id = this.maxId;
+  
+    //this._data.addCard(this.newcard);
 
   }
-  delete(id:Boards)
-  {
-    console.log(id);
-    this._data.deleteBoard(id).subscribe(
-      (data:any)=>{
-          if(data.affectedRows>0){
-            this.arrdata.splice(this.arrdata.indexOf(id),1);
-          }
-          this._router.navigateByUrl('');
+  onclick(){
+    
+    for(let i = 0;i<this.cardsarr.length;i++)
+    {
+      this.cardDetails = this.cardsarr[i];
+    for(let j = 0;j<this.cardDetails.cardList.length;j++)
+      {
+        console.log(this.cardDetails.cardList[j]);
       }
-    );
-   
+      console.log("outer loop");
+    }
   }
 }

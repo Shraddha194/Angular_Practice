@@ -21,7 +21,7 @@ maxID :number;
 
   ngOnInit() {
     this._boarddata.getAllBoards().subscribe(
-      (data:any[])=>{
+      (data:Boards[])=>{
         this.boardsarr=data;
         this.maxID = this.boardsarr.length;
         console.log(this.boardsarr);

@@ -1,23 +1,23 @@
 {
     "cards":[
         {
-            "id":1,
+            "id":"1",
             "boardId":"1",
             "cardId":"1",
             "cardTitle":"Abc",
             "cardList":[
-                "qwerty",
-                "xyz"
+                "AAA",
+                "BBB"
             ]
         },
         {
             "id":"2",
-            "boardId":"2",
+            "boardId":"1",
             "cardId":"2",
             "cardTitle":"Xyz",
             "cardList":[
-                "kknc",
-                "kvn"
+                "XXX",
+                "YYY"
             ]   
         }
     ]

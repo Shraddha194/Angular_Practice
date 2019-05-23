@@ -15,9 +15,26 @@
     color: slateblue;
 }
 .boardDeleteButton{
-    float: right;
-    margin-right: 1%;
+    margin-left:1%; 
     margin-top: 1%;
     color: white;
     background-color:rgb(84, 69, 180);
+}
+.addCardButton{
+    margin-left: 68%;
+    margin-right: 0; 
+margin-top: 1%;
+color: white;
+background-color:rgb(84, 69, 180);
+}
+.content{
+    margin-top: 1%;
+    height: 100%;
+    width: 100%;
+}
+.cardDesign{
+    width:25%;
+    margin-left: 1;
+    height: 100%;
+    
 }

@@ -34,9 +34,9 @@ commonHeader = new HttpHeaders().set('Content-Type','application/json');
       return this._http.get<Boards>(this.url1 + id);
     }
  //------------------------Card Services --------------------------------
- getCardById(id:number){
-   return this._http.get<Cards>(this.url2 + id);
- }   
+//  getCardById(id:number){
+//    return this._http.get<Cards>(this.url2 + id);
+//  }   
  addCard(item:Cards){
    let body = JSON.stringify(item);
    return this._http.post(this.url2, body, {headers:this.commonHeader});
@@ -47,5 +47,8 @@ commonHeader = new HttpHeaders().set('Content-Type','application/json');
  }
  deleteCard(item: Cards){
    return this._http.delete(this.url2 + item.id, {headers:this.commonHeader});
+ }
+ getAllCards(){
+   return this._http.get<Cards[]>(this.url2);
  }
 }

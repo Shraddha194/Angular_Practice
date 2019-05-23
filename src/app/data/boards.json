@@ -1,19 +1,14 @@
 {
   "boards": [
     {
-      "id": "1",
-      "boardId": "1",
-      "boardName": "Project 1"
+      "id": 1,
+      "boardId": 1,
+      "boardName": "project 1"
     },
     {
       "id": 2,
       "boardId": 2,
-      "boardName": "Project 2"
-    },
-    {
-      "id": 3,
-      "boardId": 3,
-      "boardName": "Project 3"
+      "boardName": "project 2"
     }
   ]
 }
