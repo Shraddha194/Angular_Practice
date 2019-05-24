@@ -5,6 +5,7 @@ import { Boards } from '../boards';
 import { Cards } from '../cards';
 import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-cards',
@@ -24,6 +25,7 @@ export class CardsComponent implements OnInit {
   constructor(private _router: Router,
     private _data: DashboardServiceService,
     private _activateRoute: ActivatedRoute,
+    private dialog : MatDialog
   ) { }
 
 
@@ -43,9 +45,8 @@ export class CardsComponent implements OnInit {
     this._data.getAllCards().subscribe(
       (data: Cards[]) => {
         this.cardsarr = data;
-        console.log(this.cardsarr);
         for(let i=0;i<this.cardsarr.length;i++){
-          console.log(this.cardsarr[i].cardTitle);
+
         this.boardform.value.cardTitle = this.cardsarr[i].cardTitle;
         }
          this.getAllCardDetails(this.cardsarr)
@@ -94,9 +95,19 @@ export class CardsComponent implements OnInit {
   addCard(){
     this.maxId = this.cardsarr.length+1;
     console.log(this.maxId);
-   // this.newcard.id = this.maxId;
-  
-    //this._data.addCard(this.newcard);
+  this.newcard = new Cards(
+    this.maxId, 
+    this.id,
+    this.maxId,
+    'cardTitle',
+    ['cardList1','cardList2','assdd','asdasfaffd']
+
+  );
+    this._data.addCard(this.newcard).subscribe(
+      (data:any)=>{
+
+      }
+    );
 
   }
   onclick(){

@@ -39,6 +39,7 @@ commonHeader = new HttpHeaders().set('Content-Type','application/json');
 //  }   
  addCard(item:Cards){
    let body = JSON.stringify(item);
+   console.log(body);
    return this._http.post(this.url2, body, {headers:this.commonHeader});
  }
  editCard(item: Cards){
